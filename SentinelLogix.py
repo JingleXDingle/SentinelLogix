@@ -1,6 +1,10 @@
 import win32evtlog 
+import win32security
 
-def collect_event_logs(log_type="System" + "Security", server="localhost"):
+def enable_privileges(privilege_name):
+    "Enable a specific privilege for the current process."
+
+def collect_event_logs(log_type="Security" , server="localhost"):
     """
     Collects Windows Event Logs from the specified log type.
     
@@ -31,5 +35,5 @@ def collect_event_logs(log_type="System" + "Security", server="localhost"):
 
 # Example usage
 if __name__ == "__main__":
-    collect_event_logs(log_type="System") 
+    collect_event_logs(log_type="Security") 
     
