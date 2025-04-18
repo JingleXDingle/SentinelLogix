@@ -1,5 +1,5 @@
 import win32evtlog 
-
+import win32security
 def collect_event_logs(log_type="System" + "Security", server="localhost"):
     """
     Collects Windows Event Logs from the specified log type.
