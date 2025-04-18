@@ -3,4 +3,4 @@ SentinelLogix is a lightweight Python-based log collection and parsing tool desi
 
 This project is intended as both a learning platform and a practical foundation for developing a custom, modular SIEM system tailored for small environments or blue team training labs.
 
-This project is ongoing and it is not finished.
+THIS PROJECT IS ONGOING AND IT IS NOT FINISHED !!!
