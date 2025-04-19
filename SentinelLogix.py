@@ -1,5 +1,30 @@
 import win32evtlog 
 import win32security
+
+def enable_privilege(privilege_name):
+    """
+    Enables the specified privilege for the current process.
+    :param privilege_name: The name of the privilege to enable (e.g., 'SeSecurityPrivilege').
+    """
+    try:
+        # Get the current process token
+        token = win32security.OpenProcessToken(
+            win32security.GetCurrentProcess(),
+            win32security.TOKEN_ADJUST_PRIVILEGES | win32security.TOKEN_QUERY
+        )
+        
+        # Lookup the privilege ID
+        privilege_id = win32security.LookupPrivilegeValue(None, privilege_name)
+        
+        # Enable the privilege
+        win32security.AdjustTokenPrivileges(
+            token,
+            False,
+            [(privilege_id, win32security.SE_PRIVILEGE_ENABLED)]
+        )
+    except Exception as e:
+        print(f"Failed to enable privilege {privilege_name}: {e}")
+
 def collect_event_logs(log_type="System" + "Security", server="localhost"):
     """
     Collects Windows Event Logs from the specified log type.
@@ -31,5 +56,6 @@ def collect_event_logs(log_type="System" + "Security", server="localhost"):
 
 # Example usage
 if __name__ == "__main__":
-    collect_event_logs(log_type="System") 
+    collect_event_logs(log_type="Security") 
+    
     
